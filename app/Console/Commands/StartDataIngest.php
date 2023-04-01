@@ -31,7 +31,7 @@
                 'key'       => "{$startDate}x{$endDate}"
             ]);
 
-            cache()->remember('ingest', 360, function() use ($ingest) {
+            cache()->remember('ingest', 36000, function() use ($ingest) {
                 return $ingest;
             });
 

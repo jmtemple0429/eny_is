@@ -11,11 +11,23 @@
                 </div>
 
                 <!-- Navigation Links -->
+                @unless(! is_null(auth()->user()->password))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index') || request()->routeIs('roles.create') || request()->routeIs('roles.edit')">
+                        {{ __('Roles') }}
                     </x-nav-link>
+
+                    <x-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Auth Rules') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Data Rules') }}
+                    </x-nav-link>
+
+                    
                 </div>
+                @endunless
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

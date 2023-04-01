@@ -26,7 +26,8 @@
             'available_now',
             'member_number',
             'account_id',
-            'dr'
+            'dr',
+            'ingest_id'
         ];
 
         protected $casts = [

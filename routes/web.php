@@ -33,7 +33,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::prefix('ingest')->name('ingest.')->namespace('Ingest')->group(function() {
+    Route::prefix('ingest')->name('ingest.')->namespace('Ingest')->middleware('can:is.ingest')->group(function() {
         Route::prefix('vcn')->name('vcn.')->namespace('VCN')->group(function() {
             Route::view('members','ingest.vcn.members')->name('members'); #done
             Route::view('assigned_positions','ingest.vcn.assigned_positions')->name('assigned_positions'); #done
@@ -71,6 +71,10 @@ Route::middleware([
             Route::post('schedule','ScheduleController@store');
             Route::post('responders','RespondersController@store');
         });
+    });
+
+    Route::middleware('can:is.live')->group(function() {
+        Route::resource('roles','RolesController');
     });
 
     Route::get('/dashboard', function () {
